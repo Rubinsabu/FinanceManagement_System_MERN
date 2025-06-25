@@ -1,8 +1,8 @@
 import axiosInstance from './api';
 
 export const getTransactions = async(filters = {})=>{
-    // Only build query string if filters exist
-  const query = Object.keys(filters).length
+    
+  const query = Object.keys(filters).length                 // Only build query string if filters exist
   ? `?${new URLSearchParams(filters).toString()}`
   : '';
     const res = await axiosInstance.get(`/transactions?${query}`);

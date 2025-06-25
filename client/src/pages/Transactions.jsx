@@ -36,62 +36,62 @@ const Transactions = () => {
   });
 
   return (
-    <div className="p-6">
-      <h2 className="text-xl font-bold mb-4">Your Transactions</h2>
+    <div className="p-6 bg-gray-50 min-h-screen">
+      <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Your Transactions</h2>
 
-      <div className="flex flex-wrap gap-4 mb-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
         <input
           type="text"
           placeholder="Search by title..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="p-2 border rounded w-full sm:w-auto"
+          className="p-3 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200"
         />
         <input
           type="date"
           value={dateFilter}
           onChange={(e) => setDateFilter(e.target.value)}
-          className="p-2 border rounded"
+          className="p-3 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200"
         />
         <input
           type="text"
           placeholder="Filter by category"
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
-          className="p-2 border rounded"
+          className="p-3 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200"
         />
       </div>
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto rounded-lg shadow">
         <table className="min-w-full bg-white border">
           <thead>
-            <tr className="bg-gray-100">
+            <tr className="bg-blue-100 text-gray-700 text-left text-sm uppercase">
               <th className="py-2 px-4 border">Title</th>
               <th className="py-2 px-4 border">Amount</th>
               <th className="py-2 px-4 border">Type</th>
               <th className="py-2 px-4 border">Category</th>
               <th className="py-2 px-4 border">Date</th>
-              <th className="py-2 px-4 border">Actions</th>
+              <th className="py-2 px-4 border text-center">Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-gray-600">
             {filteredTransactions.map((t) => (
-              <tr key={t._id}>
-                <td className="py-2 px-4 border">{t.title}</td>
+              <tr key={t._id} className="border-t hover:bg-gray-50">
+                <td className="py-2 px-4 border font-medium">{t.title}</td>
                 <td className="py-2 px-4 border">₹{t.amount}</td>
                 <td className="py-2 px-4 border capitalize">{t.type}</td>
                 <td className="py-2 px-4 border">{t.category}</td>
                 <td className="py-2 px-4 border">{new Date(t.date).toLocaleDateString()}</td>
-                <td className="py-2 px-4 border space-x-2">
+                <td className="py-2 px-4 flex justify-center gap-2">
                   <button
                     onClick={() => navigate(`/edit-transaction/${t._id}`)}
-                    className="bg-yellow-400 px-3 py-1 rounded text-white"
+                    className="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-1 rounded"
                   >
                     Edit
                   </button>
                   <button
                     onClick={() => handleDelete(t._id)}
-                    className="bg-red-500 px-3 py-1 rounded text-white"
+                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded"
                   >
                     Delete
                   </button>
